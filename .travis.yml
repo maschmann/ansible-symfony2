@@ -5,19 +5,17 @@ php: "7.0"
 
 sudo: false
 
-before_install:
-  - sudo pip install ansible
-  - sudo ansible-galaxy install geerlingguy.php
-
 addons:
   apt:
     packages:
     - php7.0-cli
     - php7.0-common
     - php7.0-curl
-    - python-pip
+    - python
+    - ansible
 
 install:
+  - ansible-galaxy install geerlingguy.php
   # Add ansible.cfg to pick up roles path.
   - "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
 
