@@ -10,12 +10,29 @@ addons:
     packages:
     - php7.0-cli
     - php7.0-common
+    - php-apcu
     - php7.0-curl
+    - php7.0-gd
+    - php7.0-json
+    - php7.0-opcache
+    - php-imagick
+    - php-mongodb
+    - php7.0-mcrypt
+    - php-memcached
+    - php7.0-mysql
+    - php-xdebug
+    - php7.0-intl
+    - php7.0-dev
+    - php7.0-sqlite3
+    - php7.0-bcmath
+    - php7.0-mbstring
+    - mcrypt
+    - sqlite3
     - python
     - ansible
 
 install:
-  - ansible-galaxy install geerlingguy.php
+  #- ansible-galaxy install geerlingguy.php
   # Add ansible.cfg to pick up roles path.
   - "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
 
