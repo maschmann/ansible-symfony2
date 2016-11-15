@@ -3,7 +3,7 @@ language: php
 #python: "2.7"
 php: "7.0"
 
-sudo: false
+sudo: true
 
 addons:
   apt:
@@ -15,13 +15,13 @@ addons:
 
 install:
   # Install Ansible.
-  - pip install ansible #==1.9.4
+  - sudo pip install ansible #==1.9.4
 
   # Add ansible.cfg to pick up roles path.
   - "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
 
   # Install required dependencies.
-  - ansible-galaxy install geerlingguy.php #,1.9.2
+  - sudo ansible-galaxy install geerlingguy.php #,1.9.2
 
 script:
   # Check the role/playbook's syntax.
