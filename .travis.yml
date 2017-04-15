@@ -1,49 +1,55 @@
 ---
-language: php
-#python: "2.7"
-php: "7.0"
+---
+language: python
+python: "2.7"
 
 sudo: false
 
 addons:
   apt:
     packages:
-    - php7.0-cli
-    - php7.0-common
-    - php-apcu
-    - php7.0-curl
-    - php7.0-gd
-    - php7.0-json
-    - php7.0-opcache
-    - php-imagick
-    - php-mongodb
-    - php7.0-mcrypt
-    - php-memcached
-    - php7.0-mysql
-    - php-xdebug
-    - php7.0-intl
-    - php7.0-dev
-    - php7.0-sqlite3
-    - php7.0-bcmath
-    - php7.0-mbstring
-    - mcrypt
-    - sqlite3
-    - python
-    - ansible
+      - php7.0-cli
+      - php7.0-common
+      - php7.0-curl
+      - php7.0-cli
+      - php7.0-common
+      - php-apcu
+      - php7.0-gd
+      - php7.0-json
+      - php7.0-opcache
+      - php-imagick
+      - php-mongodb
+      - php7.0-mcrypt
+      - php-memcached
+      - php7.0-mysql
+      - php-xdebug
+      - php7.0-intl
+      - php7.0-dev
+      - php7.0-sqlite3
+      - php7.0-bcmath
+      - php7.0-mbstring
+      - mcrypt
+      - sqlite3
+      - python
+      - ansible
 
 install:
-  #- ansible-galaxy install geerlingguy.php
+  - pip install ansible
+  - ansible-galaxy install geerlingguy.php
   # Add ansible.cfg to pick up roles path.
   - "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
 
 script:
   # Check the role/playbook's syntax.
-  - "ansible-playbook -i tests/inventory tests/test_2_7.yml --syntax-check"
   - "ansible-playbook -i tests/inventory tests/test_2_8.yml --syntax-check"
   - "ansible-playbook -i tests/inventory tests/test_3_0.yml --syntax-check"
   - "ansible-playbook -i tests/inventory tests/test_3_1.yml --syntax-check"
+  - "ansible-playbook -i tests/inventory tests/test_3_2.yml --syntax-check"
   # Run playbooks
-  - "ansible-playbook -i tests/inventory tests/test_2_7.yml --connection=local"
   - "ansible-playbook -i tests/inventory tests/test_2_8.yml --connection=local"
   - "ansible-playbook -i tests/inventory tests/test_3_0.yml --connection=local"
   - "ansible-playbook -i tests/inventory tests/test_3_1.yml --connection=local"
+  - "ansible-playbook -i tests/inventory tests/test_3_2.yml --connection=local"
+
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
